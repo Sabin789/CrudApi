@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craete an User</title>
+</head>
+
+<body>
+    <form action="/update/<%= data._id %>" method="post">
+        <label><input name="username" type="text" name="Username" id="" placeholder="Username"
+                value="<%= data.username %>"></label>
+        <label>
+            <input name="password" type="password" name="Password" id="" placeholder="Password"
+                value="<%= data.password %>">
+            </name>
+        </label>
+        <label>
+            <input value="<%= data.email %>" name="email" type="email" name="Email" id="" placeholder="Email">
+        </label>
+        <button>Submit</button>
+    </form>
+
+</body>
+
+</html>

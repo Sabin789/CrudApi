@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Hello <%= data.loggedInUser.username %>
+    </h1>
+    <h3>Your details</h3>
+    <img src="<%= data.loggedInUser.avatar %>">
+    <% let i=1 %>
+        <% let j=1 %>
+            <% let k=1 %>
+
+
+                <table border="1px">
+                    <tr>
+                        <th>
+                            S. No
+                        </th>
+                        <th>Username</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th>Followers</th>
+                        <th>Following</th>
+                        <th>Edit</th>
+                        <th>Delete</th>
+                    </tr>
+                    <tr>
+                        <td>
+                            <%= i++ %>
+                        </td>
+                        <td>
+                            <%= data.loggedInUser.username %>
+                        </td>
+                        <td>
+                            <%= data.loggedInUser.email %>
+                        </td>
+
+                        <td>
+                            <input type="password" value="<%= data.loggedInUser.password %>">
+                        </td>
+                        <td>
+                            <%= data.loggedInUser.followersCount %>
+                        </td>
+                        <td>
+                            <%= data.loggedInUser.followingCount %>
+                        </td>
+                        <td>
+                            <form action="/edit/<%= data.loggedInUser._id %>" method="post">
+                                <button id="<%= data.loggedInUser._id %>">Edit</button>
+                            </form>
+
+                        </td>
+                        <td>
+                            <form action="/delete/<%= data.loggedInUser._id %>" method="post">
+                                <button id="<%= data.loggedInUser._id %>">Delete</button>
+                            </form>
+                        </td>
+
+
+                    </tr>
+                </table>
+                <br>
+                <hr>
+                <br>
+
+                <h3>Our Users</h3>
+                <table border="1px">
+                    <th>
+                        S. No
+                    </th>
+                    <th>Username</th>
+                    <th>Followers</th>
+                    <th>Following</th>
+                    <th>Action</th>
+
+                    <% data.allUser.forEach((item)=> { %>
+
+                        <tr>
+                            <td>
+                                <%= k++ %>
+                            </td>
+                            <td>
+                                <%= item.username %>
+                            </td>
+
+                            <td>
+                                <% let followersCount= item.followers.length %>
+                                    <%=  followersCount %>
+
+                            </td>
+                            <td>
+                                <% var followingCount= item.following.length %>
+                                    <%= followingCount %>
+                            </td>
+                            <td>
+                     
+                                <!-- <form action="/follow/ <%= item._id%>" method="POST">
+                                    <button id="<%= item._id %>">Unfollow</button>
+                                </form> -->
+                            
+                           <% if(data.loggedInUser.followers.includes(item._id)){%>
+                                <form action="/follow/ <%= item._id%>" method="POST">
+                                    <button id="<%= item._id %>">Unfollow</button>
+                                </form>
+                           <% }else{ %>
+                                <form action="/follow/ <%= item._id%>" method="POST">
+                                    <button id="<%= item._id %>">Follow</button>
+                                </form>
+                           <% } %>
+                            </td>
+                            <% }) %>
+</body>
+
+</html>

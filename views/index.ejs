@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Craete an User</title>
+</head>
+
+<body>
+    <h1>Register</h1>
+    <form action="/create" method="post">
+        <label><input name="username" type="text" name="Username" id="" placeholder="Username"></label>
+        <label><input name="password" type="password" name="Password" id="" placeholder="Password"></label>
+        <label><input name="email" type="email" name="Email" id="" placeholder="Email"></label>
+        <button>Register</button>
+    </form>
+    <hr>
+    <h1>Login</h1>
+    
+    <form action="/login" method="post">
+        <label><input name="username" type="text" name="Username" id="" placeholder="Username"></label>
+        <label><input name="password" type="password" name="Password" id="" placeholder="Password"></label>
+        <button>Login</button>
+        <p><%= data.error%></p>
+    </form>
+    <hr>
+
+    <h3>Our Users</h3>
+    <% let i=1 %>
+        <table border="1px">
+            <th>
+                S. No
+            </th>
+            <th>Username</th>
+           
+            <% data.result.forEach((item)=> { %>
+                <tr>
+                    <td>
+                        <%= i++ %>
+                    </td>
+                    <td>
+                        <%= item.username %>
+                    </td>
+                   
+                  
+                    
+                    <% }) %>
+                </tr>
+                
+        </table>
+
+
+
+</body>
+
+</html>
